@@ -1,0 +1,204 @@
+		<!DOCTYPE html>
+		<html lang="en" ng-app="MusicJ" ng-init="response='Hello'">
+		<head>
+			<meta charset="utf-8">
+			<meta http-equiv="X-UA-Compatible" content="IE=edge">
+			<meta name="viewport" content="width=device-width, initial-scale=1">
+			<title>MusicJ</title>
+			
+			<link href='./styles/css.css' rel='stylesheet' type='text/css'>
+
+
+			<script src="./scripts/angular.min.js"></script>
+			<script type="text/javascript" src="./scripts/app.module.js"></script>
+
+			<link rel="icon" type="image/png" sizes="16x16" href="#">
+			<link rel="icon" type="image/png" sizes="32x32" href="#">
+			<link rel="icon" type="image/png" sizes="96x96" href="#">
+
+			<link rel="stylesheet" href="styles/styles.css">
+
+			<link rel="stylesheet" href="styles/app.css">
+		</head>
+		<body class="blur-theme">
+
+			<div class="body-bg"></div>
+
+			<div ng-class="menu-collapsed">
+				<div class="al-sidebar">
+					<div class="slimScrollDiv">					
+						<ul class="al-sidebar-list">
+							<li class="al-sidebar-list-item ng-scope" ui-sref-active="selected">
+								<a ng-href="" class="al-sidebar-list-link ng-scope" href="singer.html"> <i class="ion-android-home"></i> 
+									<span class="ng-binding">Home</span>
+								</a>
+							</li>
+							<li class="al-sidebar-list-item ng-scope selected" ui-sref-active="selected">
+								<a ng-href="" class="al-sidebar-list-link ng-scope" href="#"> <i class="ion-android-home"></i> 
+									<span class="ng-binding">Songs</span>
+								</a>									
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+			<div>
+				<div class="page-top clearfix ng-isolate-scope" scroll-position="scrolled" max-height="50" ng-class="{'scrolled': scrolled}">
+					<a href="#/dashboard" class="al-logo clearfix"><span>Music</span>J</a><a href="" class="collapse-menu-link ion-navicon" ba-sidebar-toggle-menu="">						
+					</a>
+					<div class="search">
+						<i class="ion-ios-search-strong" ng-click="startSearch()"></i>
+						<input id="searchInput" type="text" placeholder="Search for...">
+					</div>
+					<div class="user-profile clearfix">
+						<div class="al-user-profile dropdown" uib-dropdown="">
+							<a uib-dropdown-toggle="" class="profile-toggle-link dropdown-toggle" aria-haspopup="true" aria-expanded="false"><img ng-src="assets/img/app/profile/Sajin.jpg" src="assets/img/app/profile/Sajin.jpg"></a>
+							<ul class="top-dropdown-menu profile-dropdown dropdown-menu" uib-dropdown-menu="">
+								<li>
+									<i class="dropdown-arr"></i>
+								</li>
+								<li>
+									<a href="#/profile"><i class="fa fa-user"></i>Profile</a>
+								</li>
+								<li>
+									<a href=""><i class="fa fa-cog"></i>Settings</a>
+								</li>
+								<li>
+									<a href="" class="signout"><i class="fa fa-power-off"></i>Sign out</a>
+								</li>
+							</ul>
+						</div>
+						<msg-center>
+							<ul class="al-msg-center clearfix">
+								<li uib-dropdown="" class="dropdown">
+									<a href="" uib-dropdown-toggle="" class="dropdown-toggle" aria-haspopup="true" aria-expanded="false"><i class="fa fa-bell-o"></i><span>5</span><div class="notification-ring"></div></a>							
+								</li>
+								<li uib-dropdown="" class="dropdown">
+									<a href="" class="msg dropdown-toggle" uib-dropdown-toggle="" aria-haspopup="true" aria-expanded="false"><i class="fa fa-envelope-o"></i><span>5</span><div class="notification-ring"></div></a>						
+								</li>
+							</ul>
+						</msg-center>
+					</div>
+				</div>
+			</div>
+
+			<div class="al-main">
+				<div class="al-content">
+					<content-top></content-top>
+					<div ui-view autoscroll="true" autoscroll-body-top>
+						<div ng-controller="myCtrl">
+							<h2 class="text-success">Song Upload</h2>
+							<div class="panel panel-default">
+								<div class="panel-body">
+									<div class="ng-file-upload">
+										<input type="file" id="my-file" file-model="myFile"/>
+										<button ng-click="uploadFile()" class = "btn btn-primary">Upload File</button>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class='songControll' ng-controller='songController'>
+							<div class='panel panel-default' style='background-color: #1C2B36;'>
+								<div class='panel-body'>
+
+									<ul class='' id='list' style='list-style: none;'>
+										
+										<li ng-repeat="song in songs">
+											<a href='#' data-value='{{song[1]}}'> 
+												{{song[0]}}
+											</a>
+										</li>
+									</ul>
+
+								</div>							
+							</div>
+						</div>
+
+
+					</div>
+				</div>
+
+				<footer class="al-footer clearfix">
+
+					<div class="al-footer-right">
+						Created with <i class="ion-heart"></i>
+					</div>
+					<div class="al-footer-main clearfix">
+						<div class="al-copy">
+							MusicJ
+						</div>
+						<ul class="al-share clearfix">
+							<li>
+								<i class="socicon socicon-facebook"></i>
+							</li>
+							<li>
+								<i class="socicon socicon-twitter"></i>
+							</li>
+							<li>
+								<i class="socicon socicon-google"></i>
+							</li>
+							<li>
+								<i class="socicon socicon-github"></i>
+							</li>
+						</ul>
+					</div>
+
+				</footer>
+
+				<back-top>
+
+				</back-top>
+
+				<!--
+				<div id="preloader" ng-show="!$pageFinishedLoading">
+				<div></div>
+				</div>
+			-->
+				<!--
+				<script src="scripts/action.js"></script>
+				<script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
+
+				<script src="scripts/main.js"></script>
+			-->
+			<style>
+
+			audio {
+				filter: hue-rotate(50deg);
+			}
+
+			audio::-webkit-media-controls, audio::-webkit-media-controls-panel {
+				background: transparent;
+			}
+
+			audio::-webkit-media-controls-play-button {
+				margin: 0 2rem;
+			}
+			.player-fixed{
+				background-color: #1C2B36;
+				position: fixed;
+				bottom: 0px;
+				width: 100%;
+				height: 15%;
+			}
+
+		</style>
+		<script>
+			list.onclick = function(e) {
+				e.preventDefault();
+
+				var elm = e.target;
+				var audio = document.getElementById('audio');
+
+				var source = document.getElementById('audioSource');
+				source.src = elm.getAttribute('data-value');
+
+  				audio.load(); //call this to just preload the audio without playing
+  				audio.play(); //call this to play the song right away
+};
+</script>
+<div class='player-fixed'>
+	<audio id="audio" controls="controls"> <source id="audioSource" src=''></audio>
+	</div>
+</div>
+</body>
+</html>
